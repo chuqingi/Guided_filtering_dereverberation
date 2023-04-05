@@ -63,7 +63,7 @@ def gsf(reverb_speech, params):
     gain_1 = np.where(y_tilde / guidance_spectrogram < params.gain_min, params.gain_min, y_tilde / guidance_spectrogram)
     gain = np.where(gain_1 > params.gain_max, params.gain_max, gain_1)  # (22)
     out = gain * x_final
-    output = np.zeros((frames * params.inc + params.overlap))
+    output = np.zeros((frames - 1) * params.inc + params.overlap)
     k = 0
     overlap_buff = np.zeros(params.wlen)
     for i in range(frames):
